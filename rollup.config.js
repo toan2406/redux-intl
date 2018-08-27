@@ -13,5 +13,8 @@ export default {
       exclude: 'node_modules/**',
     }),
   ],
-  external: ['react'],
+  external: ['react', 'intl-messageformat'],
+  watch: {
+    include: 'src/**',
+  },
 };

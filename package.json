@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rollup -c rollup.config.js"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "build": "rollup -c rollup.config.js",
+    "build:watch": "rollup -c rollup.config.js --watch"
   },
   "author": "",
   "license": "ISC",
@@ -13,12 +15,26 @@
     "react": "~16.3"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.4.2",
     "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
+    "enzyme": "^3.5.0",
+    "enzyme-adapter-react-16.3": "^1.1.0",
     "jest": "^23.5.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.3",
     "rollup": "^0.64.1",
     "rollup-plugin-babel": "^3.0.7",
     "rollup-plugin-node-resolve": "^3.3.0"
+  },
+  "dependencies": {
+    "intl-messageformat": "^2.2.0",
+    "intl-relativeformat": "^2.1.0"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>jest.setup.js"
   }
 }

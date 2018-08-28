@@ -5,5 +5,13 @@
     }],
     "react"
   ],
-  "plugins": ["external-helpers"]
+  "plugins": [
+    "transform-object-rest-spread",
+    "external-helpers"
+  ],
+  "env": {
+    "test": {
+      "presets": [["env"], "react"]
+    }
+  }
 }

@@ -13,7 +13,12 @@ export default {
       exclude: 'node_modules/**',
     }),
   ],
-  external: ['react', 'intl-messageformat'],
+  external: [
+    'react',
+    'intl-messageformat',
+    'intl-relativeformat',
+    'intl-format-cache',
+  ],
   watch: {
     include: 'src/**',
   },

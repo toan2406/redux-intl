@@ -1,15 +1,16 @@
 {
-  "name": "eh-redux-intl",
+  "name": "redux-intl",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "This library provides Redux components for i18n integration.",
+  "main": "./lib/index.js",
+  "module": "./lib/index.es.js",
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --verbose --watch",
+    "test:watch": "jest --verbose --watchAll",
     "build": "rollup -c rollup.config.js",
     "build:watch": "rollup -c rollup.config.js --watch"
   },
-  "author": "",
+  "author": "Toan Nguyen <toan.nguyen@employmenthero.com>",
   "license": "ISC",
   "peerDependencies": {
     "react": "~16.3"

@@ -30,9 +30,11 @@
     "react-dom": "^16.3.3",
     "rollup": "^0.64.1",
     "rollup-plugin-babel": "^3.0.7",
+    "rollup-plugin-commonjs": "^9.1.6",
     "rollup-plugin-node-resolve": "^3.3.0"
   },
   "dependencies": {
+    "formatjs-extract-cldr-data": "^4.1.0",
     "intl-format-cache": "^2.1.0",
     "intl-messageformat": "^2.2.0",
     "intl-relativeformat": "^2.1.0"

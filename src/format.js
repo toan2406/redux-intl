@@ -19,3 +19,13 @@ export function formatMessage(
 
   return formattedMessage;
 }
+
+export function formatRelative(config, formatters, value, options = {}) {
+  const { locale, formats } = config;
+
+  const date = new Date(value);
+  const formatter = formatters.getRelativeFormat(locale);
+  const formattedRelative = formatter.format(date);
+
+  return formattedRelative;
+}

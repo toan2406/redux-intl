@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { injectIntl } from '../lib/index.es.js';
+import { injectIntl, addLocaleData } from '../lib/index.es.js';
+import vi from '../locale-data/vi';
 
 describe('injectIntl HOC', () => {
   it('injects intl into component', () => {
@@ -63,5 +64,18 @@ describe('injectIntl HOC', () => {
     const EnhancedComponent = injectIntl(Component);
     const wrapper = mount(<EnhancedComponent intl={intlConfig} />);
     expect(wrapper.text()).toEqual('Hi Toan!');
+  });
+
+  it('formats relative date properly', () => {
+    addLocaleData(vi);
+    const intlConfig = {
+      locale: 'vi',
+    };
+    const Component = ({ intl }) => (
+      <span>{intl.formatRelative(Date.now() - 3000)}</span>
+    );
+    const EnhancedComponent = injectIntl(Component);
+    const wrapper = mount(<EnhancedComponent intl={intlConfig} />);
+    expect(wrapper.text()).toEqual('3 giây trước');
   });
 });

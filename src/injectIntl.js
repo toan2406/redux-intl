@@ -1,10 +1,10 @@
-import IntlMessageFormat from 'intl-messageformat';
-import IntlRelativeFormat from 'intl-relativeformat';
+import IntlMessageFormat from 'intl-messageformat/src/main';
+import IntlRelativeFormat from 'intl-relativeformat/src/main';
 import memoizeIntlConstructor from 'intl-format-cache';
 import * as format from './format';
 import withProps from './utils/withProps';
 
-const intlFormatMethodNames = ['formatMessage'];
+const intlFormatMethodNames = ['formatMessage', 'formatRelative'];
 
 const formatters = {
   getMessageFormat: memoizeIntlConstructor(IntlMessageFormat),

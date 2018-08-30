@@ -3,7 +3,7 @@ import { intlReducer, changeLocaleAction } from '../lib/index.es.js';
 describe('intlReducer', () => {
   it('returns current state', () => {
     const action = { type: 'FOO' };
-    const nextState = intlReducer(undefined, action);
+    const nextState = intlReducer.intl(undefined, action);
     expect(nextState).toEqual({
       locale: 'en',
       messages: {},
@@ -18,7 +18,7 @@ describe('intlReducer', () => {
         greeting: 'Xin chao!',
       },
     });
-    const nextState = intlReducer(undefined, action);
+    const nextState = intlReducer.intl(undefined, action);
     expect(nextState).toEqual({
       locale: 'vi',
       messages: {

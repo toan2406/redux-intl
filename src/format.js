@@ -1,4 +1,8 @@
+import invariant from 'invariant';
+import flow from './utils/flow';
+import path from './utils/path';
 import getOr from './utils/getOr';
+import defaultTo from './utils/defaultTo';
 
 export function formatMessage(
   config,
@@ -9,7 +13,11 @@ export function formatMessage(
   const { locale, messages, formats } = config;
   const { id, defaultMessage } = messageDescriptor;
 
-  const message = getOr(defaultMessage, id)(messages);
+  invariant(id, '[Redux Intl] An `id` must be provided to format a message.');
+
+  const message = flow(path(id), defaultTo(defaultMessage), defaultTo(id))(
+    messages,
+  );
   const hasValues = Object.keys(values).length;
 
   if (!hasValues) return message;

@@ -17,6 +17,8 @@ export default {
   ],
   external: [
     'react',
+    'react-redux',
+    'invariant',
     'intl-messageformat',
     'intl-relativeformat',
     'intl-format-cache',

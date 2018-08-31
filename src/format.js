@@ -9,6 +9,7 @@ import type {
   Formatters,
   MessageDescriptor,
   RelativeFormatOptions,
+  NumberFormatOptions,
 } from './types';
 
 export function formatMessage(
@@ -57,6 +58,23 @@ export function formatRelative(
   });
 
   return formattedRelative;
+}
+
+export function formatNumber(
+  config: IntlConfig,
+  formatters: Formatters,
+  value: number,
+  options: NumberFormatOptions = {},
+): string {
+  const { locale, formats } = config;
+  const defaultOptions = getOr({}, 'number')(formats);
+  const formatter = formatters.getNumberFormat(locale, {
+    ...defaultOptions,
+    ...options,
+  });
+  const formattedNumber = formatter.format(value);
+
+  return String(formattedNumber);
 }
 
 const createDate = value => new Date(value);

@@ -17,10 +17,28 @@ export type RelativeFormatOptions = {
   units?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year',
 };
 
+export type NumberFormatOptions = {
+  localeMatcher?: 'best fit' | 'lookup',
+
+  style?: 'decimal' | 'currency' | 'percent',
+
+  currency?: string,
+  currencyDisplay?: 'symbol' | 'code' | 'name',
+
+  useGrouping?: boolean,
+
+  minimumIntegerDigits?: number,
+  minimumFractionDigits?: number,
+  maximumFractionDigits?: number,
+  minimumSignificantDigits?: number,
+  maximumSignificantDigits?: number,
+};
+
 export type IntlConfig = {
   locale: string,
   messages: Object,
   formats?: {
     relative: RelativeFormatOptions,
+    number: NumberFormatOptions,
   },
 };

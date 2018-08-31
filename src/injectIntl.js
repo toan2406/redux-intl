@@ -6,7 +6,11 @@ import memoizeIntlConstructor from 'intl-format-cache';
 import * as format from './format';
 import withProps from './utils/withProps';
 
-const intlFormatMethodNames = ['formatMessage', 'formatRelative'];
+const intlFormatMethodNames = [
+  'formatMessage',
+  'formatRelative',
+  'formatNumber',
+];
 
 const formatters = {
   getDateTimeFormat: memoizeIntlConstructor(Intl.DateTimeFormat),

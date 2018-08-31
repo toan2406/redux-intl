@@ -32,7 +32,7 @@ addLocaleData(vi);
 const viConfig = {
   locale: 'vi',
   messages: {
-    greeting: 'Xin chao, {name}'
+    greeting: 'Xin chao, {name}!'
   },
   formats: {
     number: {

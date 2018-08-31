@@ -6,7 +6,7 @@ describe('injectIntl HOC', () => {
   it('injects intl into component', () => {
     const Component = jest.fn(() => null);
     const EnhancedComponent = injectIntl(Component);
-    mount(<EnhancedComponent />);
+    mount(<EnhancedComponent intl={{ locale: 'en' }} />);
     expect(Component.mock.calls[0][0]).toHaveProperty('intl');
   });
 });

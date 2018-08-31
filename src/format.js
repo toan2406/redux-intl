@@ -1,15 +1,22 @@
+// @flow
 import invariant from 'invariant';
 import flow from './utils/flow';
 import path from './utils/path';
 import getOr from './utils/getOr';
 import defaultTo from './utils/defaultTo';
+import type {
+  IntlConfig,
+  Formatters,
+  MessageDescriptor,
+  RelativeFormatOptions,
+} from './types';
 
 export function formatMessage(
-  config,
-  formatters,
-  messageDescriptor = {},
-  values = {},
-) {
+  config: IntlConfig,
+  formatters: Formatters,
+  messageDescriptor: MessageDescriptor = {},
+  values: Object = {},
+): string {
   const { locale, messages, formats } = config;
   const { id, defaultMessage } = messageDescriptor;
 
@@ -28,12 +35,28 @@ export function formatMessage(
   return formattedMessage;
 }
 
-export function formatRelative(config, formatters, value, options = {}) {
+export function formatRelative(
+  config: IntlConfig,
+  formatters: Formatters,
+  value: number | string | Date,
+  options: RelativeFormatOptions = {},
+): string {
   const { locale, formats } = config;
+  const { now, ...userOptions } = options;
 
-  const date = new Date(value);
-  const formatter = formatters.getRelativeFormat(locale);
-  const formattedRelative = formatter.format(date);
+  const dateObject = createDate(value);
+  const nowObject = flow(defaultTo(Date.now()), createDate)(now);
+  const defaultOptions = getOr({}, 'relative')(formats);
+
+  const formatter = formatters.getRelativeFormat(locale, {
+    ...defaultOptions,
+    ...userOptions,
+  });
+  const formattedRelative = formatter.format(dateObject, {
+    now: isFinite(nowObject) ? nowObject : Date.now(),
+  });
 
   return formattedRelative;
 }
+
+const createDate = value => new Date(value);

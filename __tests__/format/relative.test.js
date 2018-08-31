@@ -4,17 +4,40 @@ import { injectIntl, addLocaleData } from '../../lib/index.es.js';
 import vi from '../../locale-data/vi';
 
 addLocaleData(vi);
+
+const ONE_DAY = 24 * 3600 * 1000;
+const ONE_WEEK = ONE_DAY * 7;
 const intlConfig = {
   locale: 'vi',
+  formats: {
+    relative: {
+      style: 'best fit',
+    },
+  },
 };
 
 describe('format relative', () => {
-  it('formats relative date properly', () => {
+  it('formats relative time properly', () => {
     const Component = ({ intl }) => (
-      <span>{intl.formatRelative(Date.now() - 3000)}</span>
+      <span>{intl.formatRelative(Date.now() - ONE_DAY)}</span>
     );
     const EnhancedComponent = injectIntl(Component);
     const wrapper = mount(<EnhancedComponent intl={intlConfig} />);
-    expect(wrapper.text()).toEqual('3 giây trước');
+    expect(wrapper.text()).toEqual('Hôm qua');
+  });
+
+  it('formats relative time with user configs', () => {
+    const Component = ({ intl }) => (
+      <span>
+        {intl.formatRelative(Date.now() - ONE_WEEK, {
+          now: Date.now() - ONE_DAY * 5,
+          style: 'numeric',
+          units: 'hour',
+        })}
+      </span>
+    );
+    const EnhancedComponent = injectIntl(Component);
+    const wrapper = mount(<EnhancedComponent intl={intlConfig} />);
+    expect(wrapper.text()).toEqual('48 giờ trước');
   });
 });

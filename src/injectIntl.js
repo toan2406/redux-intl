@@ -10,6 +10,8 @@ const intlFormatMethodNames = [
   'formatMessage',
   'formatRelative',
   'formatNumber',
+  'formatDate',
+  'formatTime',
 ];
 
 const formatters = {

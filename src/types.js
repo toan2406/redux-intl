@@ -34,11 +34,31 @@ export type NumberFormatOptions = {
   maximumSignificantDigits?: number,
 };
 
+export type DateTimeFormatOptions = {
+  localeMatcher?: 'best fit' | 'lookup',
+  formatMatcher?: 'basic' | 'best fit',
+
+  timeZone?: string,
+  hour12?: boolean,
+
+  weekday?: 'narrow' | 'short' | 'long',
+  era?: 'narrow' | 'short' | 'long',
+  year?: 'numeric' | '2-digit',
+  month?: 'numeric' | '2-digit' | 'narrow' | 'short' | 'long',
+  day?: 'numeric' | '2-digit',
+  hour?: 'numeric' | '2-digit',
+  minute?: 'numeric' | '2-digit',
+  second?: 'numeric' | '2-digit',
+  timeZoneName?: 'short' | 'long',
+};
+
 export type IntlConfig = {
   locale: string,
   messages: Object,
   formats?: {
     relative: RelativeFormatOptions,
     number: NumberFormatOptions,
+    date: DateTimeFormatOptions,
+    time: DateTimeFormatOptions,
   },
 };

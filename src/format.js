@@ -10,6 +10,7 @@ import type {
   MessageDescriptor,
   RelativeFormatOptions,
   NumberFormatOptions,
+  DateTimeFormatOptions,
 } from './types';
 
 export function formatMessage(
@@ -42,7 +43,7 @@ export function formatRelative(
   value: number | string | Date,
   options: RelativeFormatOptions = {},
 ): string {
-  const { locale, formats } = config;
+  const { locale, formats = {} } = config;
   const { now, ...userOptions } = options;
 
   const dateObject = createDate(value);
@@ -66,7 +67,7 @@ export function formatNumber(
   value: number,
   options: NumberFormatOptions = {},
 ): string {
-  const { locale, formats } = config;
+  const { locale, formats = {} } = config;
   const defaultOptions = getOr({}, 'number')(formats);
   const formatter = formatters.getNumberFormat(locale, {
     ...defaultOptions,
@@ -75,6 +76,47 @@ export function formatNumber(
   const formattedNumber = formatter.format(value);
 
   return String(formattedNumber);
+}
+
+export function formatDate(
+  config: IntlConfig,
+  formatters: Formatters,
+  value: number,
+  options: DateTimeFormatOptions = {},
+) {
+  const { locale, formats = {} } = config;
+  const dateObject = createDate(value);
+  const defaultOptions = getOr({}, 'date')(formats);
+  const formatter = formatters.getDateTimeFormat(locale, {
+    year: 'numeric',
+    month: 'numeric',
+    day: 'numeric',
+    ...defaultOptions,
+    ...options,
+  });
+  const formattedDate = formatter.format(dateObject);
+
+  return String(formattedDate);
+}
+
+export function formatTime(
+  config: IntlConfig,
+  formatters: Formatters,
+  value: number,
+  options: DateTimeFormatOptions = {},
+) {
+  const { locale, formats = {} } = config;
+  const dateObject = createDate(value);
+  const defaultOptions = getOr({}, 'time')(formats);
+  const formatter = formatters.getDateTimeFormat(locale, {
+    hour: 'numeric',
+    minute: 'numeric',
+    ...defaultOptions,
+    ...options,
+  });
+  const formattedTime = formatter.format(dateObject);
+
+  return String(formattedTime);
 }
 
 const createDate = value => new Date(value);

@@ -1,9 +1,13 @@
-const castPath = value => {
+// @flow
+const castPath: (string | Array<string>) => Array<string> = value => {
   if (Array.isArray(value)) return value;
   return value.toString().split('.');
 };
 
-export default (defaultValue, path) => object => {
+const getOr: (mixed, string | Array<string>) => Object => mixed = (
+  defaultValue,
+  path,
+) => object => {
   const keys = castPath(path);
   const length = keys.length;
   let index = 0;
@@ -14,3 +18,5 @@ export default (defaultValue, path) => object => {
   if (index === length) return result;
   return defaultValue;
 };
+
+export default getOr;

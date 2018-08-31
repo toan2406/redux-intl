@@ -43,7 +43,7 @@ const viConfig = {
   }
 };
 
-store.dispatch(changeLocaleAction(viConfig))
+store.dispatch(changeLocaleAction(viConfig));
 
 const Greeting = ({ intl }) =>
   <Text>{intl.formatMessage({ id: 'greeting' }, { name: 'the gioi' })}</Text>;

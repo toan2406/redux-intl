@@ -9,14 +9,22 @@ const intlConfig = {
   locale: 'vi',
   formats: {
     number: {
-      style: 'percent',
+      coverage: {
+        style: 'percent',
+      },
     },
   },
 };
 
 describe('format number', () => {
   it('formats number with global configs', () => {
-    const Component = ({ intl }) => <span>{intl.formatNumber(0.5)}</span>;
+    const Component = ({ intl }) => (
+      <span>
+        {intl.formatNumber(0.5, {
+          format: 'coverage',
+        })}
+      </span>
+    );
     const EnhancedComponent = injectIntl(Component);
     const wrapper = mount(<EnhancedComponent intl={intlConfig} />);
     expect(wrapper.text()).toEqual('50%');

@@ -12,12 +12,14 @@ export type MessageDescriptor = {
 };
 
 export type RelativeFormatOptions = {
+  format?: string,
   now?: number | string | Date,
   style?: 'best fit' | 'numeric',
   units?: 'second' | 'minute' | 'hour' | 'day' | 'month' | 'year',
 };
 
 export type NumberFormatOptions = {
+  format?: string,
   localeMatcher?: 'best fit' | 'lookup',
 
   style?: 'decimal' | 'currency' | 'percent',
@@ -35,6 +37,7 @@ export type NumberFormatOptions = {
 };
 
 export type DateTimeFormatOptions = {
+  format?: string,
   localeMatcher?: 'best fit' | 'lookup',
   formatMatcher?: 'basic' | 'best fit',
 

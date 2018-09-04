@@ -1,7 +1,14 @@
 // @flow
+
+const isNil = value => value == null;
+const isUndefined = value => typeof value === 'undefined';
+
 const castPath: (string | Array<string>) => Array<string> = value => {
   if (Array.isArray(value)) return value;
-  return value.toString().split('.');
+  return value
+    .toString()
+    .split('.')
+    .filter(Boolean);
 };
 
 const getOr: (mixed, string | Array<string>) => Object => mixed = (
@@ -13,9 +20,9 @@ const getOr: (mixed, string | Array<string>) => Object => mixed = (
   let index = 0;
   let result = object;
 
-  while (result && index < length) result = result[keys[index++]];
+  while (!isNil(result) && index < length) result = result[keys[index++]];
 
-  if (index === length) return result;
+  if (!isUndefined(result) && index === length) return result;
   return defaultValue;
 };
 

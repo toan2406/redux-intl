@@ -11,7 +11,9 @@ const intlConfig = {
   locale: 'vi',
   formats: {
     relative: {
-      style: 'best fit',
+      announcement: {
+        style: 'best fit',
+      },
     },
   },
 };
@@ -19,7 +21,11 @@ const intlConfig = {
 describe('format relative', () => {
   it('formats relative time properly', () => {
     const Component = ({ intl }) => (
-      <span>{intl.formatRelative(Date.now() - ONE_DAY)}</span>
+      <span>
+        {intl.formatRelative(Date.now() - ONE_DAY, {
+          format: 'announcement',
+        })}
+      </span>
     );
     const EnhancedComponent = injectIntl(Component);
     const wrapper = mount(<EnhancedComponent intl={intlConfig} />);

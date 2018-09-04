@@ -44,11 +44,11 @@ export function formatRelative(
   options: RelativeFormatOptions = {},
 ): string {
   const { locale, formats = {} } = config;
-  const { now, ...userOptions } = options;
+  const { now, format = '', ...userOptions } = options;
 
   const dateObject = createDate(value);
   const nowObject = flow(defaultTo(Date.now()), createDate)(now);
-  const defaultOptions = getOr({}, 'relative')(formats);
+  const defaultOptions = getOr({}, `relative.${format}`)(formats);
 
   const formatter = formatters.getRelativeFormat(locale, {
     ...defaultOptions,
@@ -68,10 +68,12 @@ export function formatNumber(
   options: NumberFormatOptions = {},
 ): string {
   const { locale, formats = {} } = config;
-  const defaultOptions = getOr({}, 'number')(formats);
+  const { format = '', ...userOptions } = options;
+
+  const defaultOptions = getOr({}, `number.${format}`)(formats);
   const formatter = formatters.getNumberFormat(locale, {
     ...defaultOptions,
-    ...options,
+    ...userOptions,
   });
   const formattedNumber = formatter.format(value);
 
@@ -85,14 +87,16 @@ export function formatDate(
   options: DateTimeFormatOptions = {},
 ) {
   const { locale, formats = {} } = config;
+  const { format = '', ...userOptions } = options;
+
   const dateObject = createDate(value);
-  const defaultOptions = getOr({}, 'date')(formats);
+  const defaultOptions = getOr({}, `date.${format}`)(formats);
   const formatter = formatters.getDateTimeFormat(locale, {
     year: 'numeric',
     month: 'numeric',
     day: 'numeric',
     ...defaultOptions,
-    ...options,
+    ...userOptions,
   });
   const formattedDate = formatter.format(dateObject);
 
@@ -106,13 +110,15 @@ export function formatTime(
   options: DateTimeFormatOptions = {},
 ) {
   const { locale, formats = {} } = config;
+  const { format = '', ...userOptions } = options;
+
   const dateObject = createDate(value);
-  const defaultOptions = getOr({}, 'time')(formats);
+  const defaultOptions = getOr({}, `time.${format}`)(formats);
   const formatter = formatters.getDateTimeFormat(locale, {
     hour: 'numeric',
     minute: 'numeric',
     ...defaultOptions,
-    ...options,
+    ...userOptions,
   });
   const formattedTime = formatter.format(dateObject);
 

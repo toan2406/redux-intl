@@ -6,9 +6,11 @@ const intlConfig = {
   locale: 'en',
   formats: {
     date: {
-      year: 'numeric',
-      month: '2-digit',
-      day: '2-digit',
+      leave: {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+      },
     },
   },
 };
@@ -16,7 +18,11 @@ const intlConfig = {
 describe('format date', () => {
   it('formats date properly', () => {
     const Component = ({ intl }) => (
-      <span>{intl.formatDate('1990-08-01')}</span>
+      <span>
+        {intl.formatDate('1990-08-01', {
+          format: 'leave',
+        })}
+      </span>
     );
     const EnhancedComponent = injectIntl(Component);
     const wrapper = mount(<EnhancedComponent intl={intlConfig} />);

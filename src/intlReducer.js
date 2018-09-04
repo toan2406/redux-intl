@@ -1,7 +1,7 @@
 import { ACTION_CHANGE_LOCALE } from './constants';
 
 const INITIAL_STATE = {
-  locale: 'en',
+  locale: null,
   messages: {},
   formats: {},
 };

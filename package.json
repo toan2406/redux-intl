@@ -1,6 +1,6 @@
 {
   "name": "redux-intl",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "This library provides Redux components for i18n integration.",
   "main": "./lib/index.js",
   "module": "./lib/index.es.js",

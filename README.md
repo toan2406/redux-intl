@@ -1,4 +1,7 @@
 # Redux-Intl
+![node](https://img.shields.io/badge/node-8.11.3-green.svg?style=flat)
+![npm](https://img.shields.io/badge/npm-5.6.0-red.svg?style=flat)
+![react](https://img.shields.io/badge/react-free-00dcff.svg?style=flat)
 
 Provide Redux components to integrate i18n to your app. This library is heavily inspired from [React Intl](https://github.com/yahoo/react-intl)
 

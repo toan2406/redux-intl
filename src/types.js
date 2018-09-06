@@ -74,8 +74,8 @@ export type HOC<Base, Enhanced> = (
 
 export type IntlObject = {
   ...IntlConfig,
-  formatMessage: Function,
-  formatRelative: Function,
+  formatMessage: (MessageDescriptor, Object) => string,
+  formatRelative: (number | string | Date, RelativeFormatOptions) => string,
   formatNumber: Function,
   formatDate: Function,
   formatTime: Function,

@@ -2,7 +2,7 @@ jest.mock('react-redux');
 import React from 'react';
 import { mount } from 'enzyme';
 import { __setState } from 'react-redux';
-import { Message, setDefaultComponent } from '../../lib/index.es.js';
+import { FormattedMessage, setDefaultComponent } from '../../lib/index.es.js';
 
 __setState({
   intl: {
@@ -13,11 +13,11 @@ __setState({
   },
 });
 
-describe('Message Component', () => {
+describe('FormattedMessage Component', () => {
   it('throws if no default component set', () => {
     const renderComponent = () =>
       mount(
-        <Message
+        <FormattedMessage
           id="greeting"
           values={{ name: 'world' }}
           defaultMessage="Hi, {name}!"
@@ -29,7 +29,7 @@ describe('Message Component', () => {
   it('renders with default component', () => {
     setDefaultComponent('span');
     const wrapper = mount(
-      <Message
+      <FormattedMessage
         id="greeting"
         values={{ name: 'world' }}
         defaultMessage="Hi, {name}!"
@@ -41,7 +41,7 @@ describe('Message Component', () => {
   it('renders with custom component', () => {
     const Heading = ({ children }) => <h1>{children}</h1>;
     const wrapper = mount(
-      <Message
+      <FormattedMessage
         component={Heading}
         id="greetin"
         values={{ name: 'world' }}

@@ -3,7 +3,7 @@ import React from 'react';
 import connectAndInjectIntl from '../connectAndInjectIntl';
 import { getDefaultComponent } from './componentManager';
 
-const Message = ({
+const FormattedMessage = ({
   component: Component = getDefaultComponent(),
   id,
   description,
@@ -16,4 +16,4 @@ const Message = ({
   </Component>
 );
 
-export default connectAndInjectIntl(Message);
+export default connectAndInjectIntl(FormattedMessage);

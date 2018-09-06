@@ -8,4 +8,5 @@ export {
   setDefaultComponent,
   getDefaultComponent,
 } from './components/componentManager';
-export { default as Message } from './components/Message';
+export { default as FormattedMessage } from './components/FormattedMessage';
+export { default as FormattedRelative } from './components/FormattedRelative';

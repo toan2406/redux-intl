@@ -5,7 +5,7 @@ describe('intlReducer', () => {
     const action = { type: 'FOO' };
     const nextState = intlReducer.intl(undefined, action);
     expect(nextState).toEqual({
-      locale: 'en',
+      locale: null,
       messages: {},
       formats: {},
     });

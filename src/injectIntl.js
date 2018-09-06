@@ -27,7 +27,7 @@ const getBoundFormatFns = (config, state) =>
     return boundFormatFns;
   }, {});
 
-export default withProps(({ intl: intlConfig }) => {
+const injectIntl = withProps(({ intl: intlConfig }) => {
   invariant(
     intlConfig,
     '[Redux Intl] Prop `intl` must be passed in. Consider using `connectAndInjectIntl` instead',
@@ -43,3 +43,5 @@ export default withProps(({ intl: intlConfig }) => {
     },
   };
 });
+
+export default injectIntl;

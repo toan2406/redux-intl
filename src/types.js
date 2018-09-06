@@ -1,4 +1,6 @@
 // @flow
+import type { ComponentType } from 'react';
+
 export type Formatters = {
   getDateTimeFormat: Function,
   getNumberFormat: Function,
@@ -64,4 +66,18 @@ export type IntlConfig = {
     date: DateTimeFormatOptions,
     time: DateTimeFormatOptions,
   },
+};
+
+export type HOC<Base, Enhanced> = (
+  ComponentType<Base>,
+) => ComponentType<Enhanced>;
+
+export type IntlObject = {
+  ...IntlConfig,
+  formatMessage: Function,
+  formatRelative: Function,
+  formatNumber: Function,
+  formatDate: Function,
+  formatTime: Function,
+  formatters: Formatters,
 };

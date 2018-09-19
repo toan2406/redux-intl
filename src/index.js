@@ -10,3 +10,4 @@ export {
 } from './components/componentManager';
 export { default as FormattedMessage } from './components/FormattedMessage';
 export { default as FormattedRelative } from './components/FormattedRelative';
+export { default as FormattedNumber } from './components/FormattedNumber';

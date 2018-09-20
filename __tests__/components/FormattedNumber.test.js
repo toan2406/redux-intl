@@ -9,8 +9,10 @@ __setState({
     locale: 'en',
     formats: {
       number: {
-        coverage: {
-          style: 'percent',
+        test: {
+          coverage: {
+            style: 'percent',
+          },
         },
       },
     },
@@ -25,7 +27,9 @@ describe('FormattedNumber Component', () => {
 
   it('renders with default component', () => {
     setDefaultComponent('small');
-    const wrapper = mount(<FormattedNumber value={0.99} format="coverage" />);
+    const wrapper = mount(
+      <FormattedNumber value={0.99} format="test.coverage" />,
+    );
     expect(wrapper.html()).toEqual('<small>99%</small>');
   });
 

@@ -17,6 +17,8 @@ const intlConfig = {
           =1 {one policy} 
           other {# policies}} to acknowledge`,
       },
+      anniversary_ordinal:
+        '{number, selectordinal, one {#st} two {#nd} few {#rd} other {#th}} Anniversary',
     },
     settings: {
       logout: 'Logout',
@@ -100,5 +102,19 @@ describe('format message', () => {
     const EnhancedComponent = injectIntl(Component);
     const wrapper = mount(<EnhancedComponent intl={intlConfig} />);
     expect(wrapper.text()).toEqual('You have one policy to acknowledge');
+  });
+
+  it('supports ordinal', () => {
+    const Component = ({ intl }) => (
+      <span>
+        {intl.formatMessage(
+          { id: 'dashboard.anniversary_ordinal' },
+          { number: 31 },
+        )}
+      </span>
+    );
+    const EnhancedComponent = injectIntl(Component);
+    const wrapper = mount(<EnhancedComponent intl={intlConfig} />);
+    expect(wrapper.text()).toEqual('31st Anniversary');
   });
 });

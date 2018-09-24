@@ -11,3 +11,4 @@ export {
 export { default as FormattedMessage } from './components/FormattedMessage';
 export { default as FormattedRelative } from './components/FormattedRelative';
 export { default as FormattedNumber } from './components/FormattedNumber';
+export { default as FormattedDate } from './components/FormattedDate';

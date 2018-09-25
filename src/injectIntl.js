@@ -27,21 +27,26 @@ const getBoundFormatFns = (config, state) =>
     return boundFormatFns;
   }, {});
 
+const createFormatters = intlConfig => {
+  const boundFormatFns = getBoundFormatFns(intlConfig, formatters);
+
+  return {
+    ...intlConfig,
+    ...boundFormatFns,
+    formatters,
+  };
+};
+
 const injectIntl = withProps(({ intl: intlConfig }) => {
   invariant(
     intlConfig,
     '[Redux Intl] Prop `intl` must be passed in. Consider using `connectAndInjectIntl` instead',
   );
 
-  const boundFormatFns = getBoundFormatFns(intlConfig, formatters);
-
   return {
-    intl: {
-      ...intlConfig,
-      ...boundFormatFns,
-      formatters,
-    },
+    intl: createFormatters(intlConfig),
   };
 });
 
+export { createFormatters };
 export default injectIntl;

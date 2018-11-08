@@ -30,7 +30,7 @@
     "enzyme": "^3.5.0",
     "enzyme-adapter-react-16.3": "^1.1.0",
     "flow-bin": "^0.79.1",
-    "jest": "^23.5.0",
+    "jest": "^23.6.0",
     "react": "^16.3.2",
     "react-dom": "^16.3.3",
     "react-redux": "^5.0.7",

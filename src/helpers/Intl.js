@@ -28,9 +28,10 @@ const Intl = {
     });
   },
   formatMessage: getFormatter('formatMessage'),
-  formatDate: getFormatter('formatDate'),
   formatNumber: getFormatter('formatNumber'),
   formatRelative: getFormatter('formatRelative'),
+  formatDate: getFormatter('formatDate'),
+  formatTime: getFormatter('formatTime'),
 };
 
 export default Intl;

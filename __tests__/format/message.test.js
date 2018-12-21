@@ -24,6 +24,7 @@ const intlConfig = {
       logout: 'Logout',
       tac: 'Terms and Conditions',
     },
+    'instapay.referral.modal_title': 'Instapay Referral Program',
   },
   formats: {
     number: {
@@ -116,5 +117,14 @@ describe('format message', () => {
     const EnhancedComponent = injectIntl(Component);
     const wrapper = mount(<EnhancedComponent intl={intlConfig} />);
     expect(wrapper.text()).toEqual('31st Anniversary');
+  });
+
+  it('supports message id with namespace', () => {
+    const Component = ({ intl }) => (
+      <span>{intl.formatMessage({ id: 'instapay.referral.modal_title' })}</span>
+    );
+    const EnhancedComponent = injectIntl(Component);
+    const wrapper = mount(<EnhancedComponent intl={intlConfig} />);
+    expect(wrapper.text()).toEqual('Instapay Referral Program');
   });
 });

@@ -5,14 +5,12 @@ import IntlRelativeFormat from 'intl-relativeformat/src/main';
 import memoizeIntlConstructor from 'intl-format-cache';
 import * as format from './format';
 import withProps from './utils/withProps';
-
-const intlFormatMethodNames = [
-  'formatMessage',
-  'formatRelative',
-  'formatNumber',
-  'formatDate',
-  'formatTime',
-];
+import type {
+  IntlConfig,
+  IntlObject,
+  Formatters,
+  BoundFormatFunctions,
+} from './types';
 
 const formatters = {
   getDateTimeFormat: memoizeIntlConstructor(Intl.DateTimeFormat),
@@ -21,13 +19,18 @@ const formatters = {
   getRelativeFormat: memoizeIntlConstructor(IntlRelativeFormat),
 };
 
-const getBoundFormatFns = (config, state) =>
-  intlFormatMethodNames.reduce((boundFormatFns, name) => {
-    boundFormatFns[name] = format[name].bind(null, config, state);
-    return boundFormatFns;
-  }, {});
+const getBoundFormatFns: (IntlConfig, Formatters) => BoundFormatFunctions = (
+  config,
+  state,
+) => ({
+  formatMessage: format.formatMessage.bind(null, config, state),
+  formatRelative: format.formatRelative.bind(null, config, state),
+  formatNumber: format.formatNumber.bind(null, config, state),
+  formatDate: format.formatDate.bind(null, config, state),
+  formatTime: format.formatTime.bind(null, config, state),
+});
 
-const createFormatters = intlConfig => {
+const createFormatters: IntlConfig => IntlObject = intlConfig => {
   const boundFormatFns = getBoundFormatFns(intlConfig, formatters);
 
   return {

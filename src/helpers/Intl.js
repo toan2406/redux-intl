@@ -1,16 +1,18 @@
+// @flow
 import invariant from 'invariant';
 import { createFormatters } from '../injectIntl';
+import type { IntlObject } from '../types';
 
 let unsubscribe = () => {};
-let intlObject = null;
+let intlObject: IntlObject | null = null;
 
-const getFormatter = formatterName => (...params) => {
+const getFormatter = formatterName => (...params: any[]) => {
   invariant(intlObject, '[Redux Intl] Intl helper is not configurated');
   return intlObject[formatterName](...params);
 };
 
 const Intl = {
-  setStore: store => {
+  setStore: (store: Object) => {
     intlObject = createFormatters(store.getState().intl);
     let currentLocale = intlObject.locale;
 

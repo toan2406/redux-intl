@@ -72,12 +72,13 @@ export type HOC<Base, Enhanced> = (
   ComponentType<Base>,
 ) => ComponentType<Enhanced>;
 
-export type IntlObject = {
-  ...IntlConfig,
+export type BoundFormatFunctions = {
   formatMessage: (MessageDescriptor, Object) => string,
   formatRelative: (number | string | Date, RelativeFormatOptions) => string,
   formatNumber: Function,
   formatDate: Function,
   formatTime: Function,
-  formatters: Formatters,
 };
+
+export type IntlObject = IntlConfig &
+  BoundFormatFunctions & { formatters: Formatters };

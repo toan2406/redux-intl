@@ -42,6 +42,6 @@ describe('format number', () => {
     );
     const EnhancedComponent = injectIntl(Component);
     const wrapper = mount(<EnhancedComponent intl={intlConfig} />);
-    expect(wrapper.text()).toEqual('5.000 ₫');
+    expect(wrapper.text()).toMatch(/(5.000 ₫|₫ 5,000)/);
   });
 });

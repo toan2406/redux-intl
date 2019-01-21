@@ -26,6 +26,8 @@ Intl.setStore(store); // pass in the redux store
 Intl.formatMessage({ id: 'greeting' }, { name: 'world' }); // return string "Hello, world!"
 ```
 
+The shape of intl config, or signature of all format functions are still the same as v1.
+
 Documentation
 -------------
 

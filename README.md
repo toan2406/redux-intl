@@ -13,6 +13,19 @@ Beside that, it also has some enhancements:
 * Support nested in dictionary file
 * Force importing locale data to reduce bundle size, since React Native uses Metro bundler (more info [here](https://github.com/yahoo/intl-messageformat/blob/master/index.js))
 
+V2 is here
+----------
+
+Redux Intl now comes with helpers which just return formatted value directly, hence it will lose ability of auto re-render message when switching locale, but gain ease of use and testing.
+
+```js
+import { Intl } from 'redux-intl';
+
+Intl.setStore(store); // pass in the redux store
+
+Intl.formatMessage({ id: 'greeting' }, { name: 'world' }); // return string "Hello, world!"
+```
+
 Documentation
 -------------
 

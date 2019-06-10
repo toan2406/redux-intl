@@ -1,18 +1,18 @@
 {
   "presets": [
-    ["env", {
+    ["@babel/preset-env", {
       "modules": false
     }],
-    "react",
-    "flow"
+    "@babel/preset-react",
+    "@babel/preset-flow"
   ],
   "plugins": [
-    "transform-object-rest-spread",
-    "external-helpers"
+    "@babel/plugin-proposal-object-rest-spread",
+    "@babel/external-helpers"
   ],
   "env": {
     "test": {
-      "presets": [["env"], "react"]
+      "presets": [["@babel/preset-env"], "@babel/preset-react"]
     }
   }
 }

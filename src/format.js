@@ -1,9 +1,13 @@
 // @flow
+import React from 'react';
 import invariant from 'invariant';
 import flow from './utils/flow';
 import path from './utils/path';
 import getOr from './utils/getOr';
 import defaultTo from './utils/defaultTo';
+import generateUID from './utils/generateUID';
+import { generateTokenFactory } from './utils/generateToken';
+import isEmpty from './utils/isEmpty';
 import type {
   IntlConfig,
   Formatters,
@@ -12,6 +16,56 @@ import type {
   NumberFormatOptions,
   DateTimeFormatOptions,
 } from './types';
+
+export function formatHTMLMessage(
+  config: IntlConfig,
+  formatters: Formatters,
+  messageDescriptor: MessageDescriptor = {},
+  values: Object = {},
+): Array<string | Object> {
+  const { locale, messages, formats } = config;
+  const { id, defaultMessage } = messageDescriptor;
+
+  invariant(id, '[Redux Intl] An `id` must be provided to format a message.');
+
+  const message = flow(
+    path(id),
+    defaultTo(defaultMessage),
+    defaultTo(id),
+  )(messages);
+
+  if (isEmpty(values)) return message;
+
+  const formatter = formatters.getMessageFormat(message, locale, formats);
+
+  const uid = generateUID();
+  const generateToken = generateTokenFactory(uid);
+  const tokenDelimiter = `@__${uid}__@`;
+  const tokenizedValues = {};
+  const elements = {};
+
+  Object.keys(values).forEach(name => {
+    const value = values[name];
+    const token = generateToken();
+
+    if (!React.isValidElement(value)) return (tokenizedValues[name] = value);
+
+    tokenizedValues[name] = `${tokenDelimiter}${token}${tokenDelimiter}`;
+    elements[token] = value;
+  });
+
+  const formattedMessage = formatter.format(tokenizedValues);
+
+  if (isEmpty(elements)) return [formattedMessage];
+
+  return formattedMessage
+    .split(tokenDelimiter)
+    .filter(Boolean)
+    .map(text => {
+      const element = elements[text];
+      return element ? { ...element, key: text } : text;
+    });
+}
 
 export function formatMessage(
   config: IntlConfig,
@@ -24,9 +78,11 @@ export function formatMessage(
 
   invariant(id, '[Redux Intl] An `id` must be provided to format a message.');
 
-  const message = flow(path(id), defaultTo(defaultMessage), defaultTo(id))(
-    messages,
-  );
+  const message = flow(
+    path(id),
+    defaultTo(defaultMessage),
+    defaultTo(id),
+  )(messages);
   const hasValues = Object.keys(values).length;
 
   if (!hasValues) return message;
@@ -47,7 +103,10 @@ export function formatRelative(
   const { now, format = '', ...userOptions } = options;
 
   const dateObject = createDate(value);
-  const nowObject = flow(defaultTo(Date.now()), createDate)(now);
+  const nowObject = flow(
+    defaultTo(Date.now()),
+    createDate,
+  )(now);
   const defaultOptions = getOr({}, `relative.${format}`)(formats);
 
   const formatter = formatters.getRelativeFormat(locale, {

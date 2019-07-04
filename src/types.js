@@ -78,6 +78,7 @@ export type BoundFormatFunctions = {
   formatNumber: Function,
   formatDate: Function,
   formatTime: Function,
+  formatHTMLMessage: Function,
 };
 
 export type IntlObject = IntlConfig &

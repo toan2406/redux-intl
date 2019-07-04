@@ -32,6 +32,7 @@ const Intl = {
   formatRelative: getFormatter('formatRelative'),
   formatDate: getFormatter('formatDate'),
   formatTime: getFormatter('formatTime'),
+  formatHTMLMessage: getFormatter('formatHTMLMessage'),
 };
 
 export default Intl;

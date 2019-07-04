@@ -49,8 +49,6 @@
     "invariant": "^2.2.4"
   },
   "jest": {
-    "setupFilesAfterEnv": [
-      "<rootDir>jest.setup.js"
-    ]
+    "setupFilesAfterEnv": ["<rootDir>jest.setup.js"]
   }
 }

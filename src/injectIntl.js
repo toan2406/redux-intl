@@ -28,6 +28,7 @@ const getBoundFormatFns: (IntlConfig, Formatters) => BoundFormatFunctions = (
   formatNumber: format.formatNumber.bind(null, config, state),
   formatDate: format.formatDate.bind(null, config, state),
   formatTime: format.formatTime.bind(null, config, state),
+  formatHTMLMessage: format.formatHTMLMessage.bind(null, config, state),
 });
 
 const createFormatters: IntlConfig => IntlObject = intlConfig => {

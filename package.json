@@ -1,6 +1,6 @@
 {
   "name": "redux-intl",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "This library provides Redux components for i18n integration.",
   "main": "./lib/index.js",
   "module": "./lib/index.es.js",
@@ -49,6 +49,8 @@
     "invariant": "^2.2.4"
   },
   "jest": {
-    "setupFilesAfterEnv": ["<rootDir>jest.setup.js"]
+    "setupFilesAfterEnv": [
+      "<rootDir>jest.setup.js"
+    ]
   }
 }
